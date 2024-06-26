@@ -1,0 +1,208 @@
+#game {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+ }
+ 
+ #board {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+ }
+ 
+ .dice {
+    background-position: 0px 0px;
+    width: 100px;
+    height: 100px;
+    margin: 0px 20px;
+    display: inline-block;
+    transition: transform 1s ease;
+ }
+ 
+ #money {
+    margin-bottom: 20px;
+ }
+ 
+ .choice {
+    display: inline-block;
+    margin: 0px 10px;
+    text-align: center;
+ }
+ 
+ .choice img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+ }
+ 
+ #result {
+    margin-bottom: 20px;
+    font-size: 24px;
+ }
+ 
+ #result span {
+    font-weight: bold;
+ }
+ 
+ #btn-bet,
+ #btn-spin {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px
+ }
+ 
+ :root {
+   --size: 100px;
+   --bgcolor: antiquewhite;
+ 
+   --ctop: rgba(0, 255, 255, 1);
+   --cleft: rgba(255, 0, 0, 1);
+   --cright: rgba(0, 255, 0, 1);
+   --cback: rgba(0, 0, 255, 1);
+   --cfront: rgba(255,255,0,1);
+   --cbottom: rgba(255,0,255,1);
+   --ctop-bg: url('final/img/tom.png');
+   --cleft-bg: url('final/img/ca.png');
+   --cright-bg: url('final/img/cua.png');
+   --cback-bg: url('final/img/ga.png');
+   --cfront-bg: url('final/img/bau.png');
+   --cbottom-bg: url('final/img/huou.png');
+  
+   --dsize: calc(var(--size) / 6);
+   --dcolor: black;
+   --dstep: calc(var(--size) * 0.25);
+ }
+ .dice{
+   transform-style: preserve-3d;
+ }
+ 
+ @keyframes rotate {
+   0% {
+     transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0);
+   }
+   20% {
+     transform: translate3d(0, -80px, 0) rotateX(90deg) rotateY(90deg) rotateZ(45deg);
+   }
+   40% {
+     transform: translate3d(0, 0, 0) rotateX(180deg) rotateY(180deg) rotateZ(90deg);
+   }
+   60% {
+     transform: translate3d(0, -130px, 0) rotateX(360deg) rotateY(270deg) rotateZ(135deg);
+   }
+   80% {
+     transform: translate3d(0, -50px, 0) rotateX(540deg) rotateY(360deg) rotateZ(180deg);
+   }
+   100% {
+     transform: translate3d(0, 0, 0) rotateX(720deg) rotateY(450deg) rotateZ(225deg);
+   }
+ }
+ 
+ .dice {
+   width: calc(var(--size) *2 );
+   height: calc(var(--size) *2 );
+   position: relative;
+   transform: rotateY(0deg) rotateX(0deg) translateZ(0px);
+ }
+ .dice.dice-spin {
+   animation: rotate 1s linear infinite;
+ }
+ 
+ 
+ .dice.face-1 {
+   transform: rotateY(0deg) rotateX(0deg) translateZ(0px);
+ }
+ 
+ .dice.face-2 {
+   transform: rotateY(90deg) rotateX(0deg) translateZ(0px);
+ }
+ 
+ .dice.face-3 {
+   transform: rotateY(180deg) rotateX(0deg) translateZ(0px);
+ }
+ 
+ .dice.face-4 {
+   transform: rotateY(-90deg) rotateX(0deg) translateZ(0px);
+ }
+ 
+ .dice.face-5 {
+   transform: rotateX(90deg) rotateX(0deg) translateZ(0px);
+ }
+ 
+ .dice.face-6 {
+   transform: rotateX(-90deg) rotateX(0deg) translateZ(0px);
+ }
+ 
+ .side {
+   position: absolute;
+   width: var(--size);
+   aspect-ratio: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: calc(var(--size) * 0.5);
+   border: 1px solid black;
+   background-size: contain;
+   background-position: center;
+   background-repeat: no-repeat;
+ }
+ .side.top {
+   background-color: var(--ctop);
+   background-image: url(var(--ctop));
+   transform:
+     translateX(calc(var(--size) * 0.5))
+     translateY(calc(var(--size) * 0.5))
+     translateZ(calc(var(--size) * 0.5))
+     ;
+     background-image: var(--ctop-bg);
+ }
+ .side.left {
+   background-color: var(--cleft);
+   transform: 
+     rotateY(-90deg)
+     rotateZ(90deg)
+     translateX(calc(var(--size) * 0.5))
+     ;
+     background-image: var(--cleft-bg);
+ }
+ .side.right {
+   background-color: var(--cright);
+   transform: 
+     rotateY(90deg)
+     rotateZ(-90deg)
+     translateX(calc(var(--size) * -0.5))
+     translateZ(calc(var(--size) * 1))
+     ;
+     background-image: var(--cright-bg);
+ }
+ .side.back {
+   background-color: var(--cback);
+   transform: 
+     rotateX(90deg)
+     rotateZ(180deg)
+     translateX(calc(var(--size) * -0.5))
+     ;
+     background-image: var(--cback-bg);
+ }
+ .side.front {
+   background-color: var(--cfront);
+   transform: 
+     rotateX(-90deg)
+     translateX(calc(var(--size) * 0.5))
+     translateZ(calc(var(--size) * 1))
+     ;
+     background-image: var(--cfront-bg);
+ }
+ .side.bottom {
+   background-color: var(--cbottom);
+     transform: 
+     rotateX(180deg)
+     translateX(calc(var(--size) * 0.5))
+     translateY(calc(var(--size) * -0.5))
+     translateZ(calc(var(--size) * 0.5))
+     ;
+     background-image: var(--cbottom-bg);
+ }
+ 
+ 
